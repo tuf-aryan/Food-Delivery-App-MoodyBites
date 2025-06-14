@@ -1,0 +1,26 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React Master",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuf-aryan/React-Master.git"
+  },
+  "keywords": [],
+  "author": "Aryan Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuf-aryan/React-Master/issues"
+  },
+  "homepage": "https://github.com/tuf-aryan/React-Master#readme",
+  "devDependencies": {
+    "parcel": "^2.15.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  }
+}
