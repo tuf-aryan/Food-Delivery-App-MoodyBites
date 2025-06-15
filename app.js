@@ -1,11 +1,22 @@
-import React from "react"; 
+import React from "react";
 import ReactDOM from "react-dom/client";
-const parent = React.createElement("div",{id:"parent"},
-    React.createElement("div",{id:"child"},
-     [ React.createElement("h1",{},"Now You  see MY power when I clear the GSOc  💦"),
-      React.createElement("h2",{},"i am a h2")
-     ]
-    )
+
+// const jsxHeading = <h1 className="head">This is my jsx code</h1>;
+// console.log(jsxHeading);
+const Title = () => <h1>Phle aa jao</h1>;
+const number = 99887800;
+const Heading = () => (
+  <div id="parent">
+    <Title />
+    <h1>{number}</h1>
+    {number}
+    {console.log("heloo mitro")}
+    <h1 className="head">This is functional componant</h1>
+  </div>
 );
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(parent);
+const root = ReactDOM.createRoot(document.querySelector("#root"));
+root.render(<Heading />);
+
+
+
+
