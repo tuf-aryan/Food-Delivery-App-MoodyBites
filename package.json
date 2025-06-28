@@ -4,8 +4,8 @@
   "description": "React Master",
   "scripts": {
     "test": "jest",
-    "start": "parcel app.html",
-    "build": "parcel build app.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
