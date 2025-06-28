@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 
-import { useState, useEffect ,useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router";
 import useOnlineStatus from "../Utils/useOnlineStatus";
@@ -10,7 +10,7 @@ const Body = () => {
   const [listOfRestaurant, setRes] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterRes, setFilterRes] = useState([]);
-  const {setUserName ,loggedInUser}=useContext(UserContext);
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   useEffect(() => {
     fetchData();
@@ -18,9 +18,7 @@ const Body = () => {
   console.log(listOfRestaurant);
 
   const fetchData = async () => {
-    const data = await fetch(
-     RES_CARD
-    );
+    const data = await fetch(RES_CARD);
     const json = await data.json();
     setRes(
       json?.data?.cards?.[1]?.card?.card?.gridElements?.infoWithStyle
@@ -31,27 +29,31 @@ const Body = () => {
         ?.restaurants
     );
   };
+  if (!listOfRestaurant || !Array.isArray(listOfRestaurant)) {
+    return <Shimmer />;
+  }
   const onlineStatus = useOnlineStatus();
-  if(onlineStatus===false) return <h1>Opps You are Offline! Check your Internet Contection</h1>
+  if (onlineStatus === false)
+    return <h1>Opps You are Offline! Check your Internet Contection</h1>;
 
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body ml-10">
-      <div className="filter flex">
-        <div className="search m-4 p-4">
+    <div className="body mx-auto sm:w-[100%] w-88">
+      <div className="flex flex-col  justify-between items-center m-2 p-4 ">
+        <div className="flex">
           <input
             type="text"
             placeholder="search"
-            className="search-bar border p-1 border-gray-400 rounded-l-lg"
+            className="w-68 sm:w-96 border border-gray-300 mx-0 h-12 p-2 rounded-l-lg"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
           ></input>
-          <button className="px-4 p-1 bg-rose-700 text-white border border-gray-400 rounded-r-lg"
+          <button
+            className="w-28 sm:w-28 bg-rose-700 text-white h-12 rounded-r-lg"
             onClick={() => {
-              
               const filteredRes = listOfRestaurant.filter((el) =>
                 el.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
@@ -61,30 +63,12 @@ const Body = () => {
             search
           </button>
         </div>
-
-        <div className="search m-2 p-3 flex items-center"> 
-        <button
-          className="px-4 py-1 bg-rose-700 text-white border border-gray-400 rounded-lg"
-          onClick={() => {
-            const filterList = listOfRestaurant.filter(
-              (res) => res?.info?.avgRating > 4.5
-            );
-            setFilterRes(filterList);
-          }}
-        >
-          Top Rated Restaurant
-        </button>
-        </div>
-         <div className="search m-2 p-3 flex items-center">
-         <label className="border border-gray-400 bg-rose-700 text-white  p-1 rounded-l-lg">User Name : </label> 
-       <input type="text" className="border border-gray-400 p-1 rounded-r-lg" value={loggedInUser} onChange={(e)=>setUserName(e.target.value)}></input>
-        </div>
-       
       </div>
-      <div className="flex flex-wrap  justify-left gap-10 ml-8">
+      <div className="flex gap-10 flex-wrap  items-center flex-col sm:flex-row sm:justify-center">
         {filterRes.map((el) => (
-         <Link key={el?.info?.id} to={"/restaurant/"+el?.info?.id}>
-         <RestaurantCard  resData={el} /></Link> 
+          <Link key={el?.info?.id} to={"/restaurant/" + el?.info?.id}>
+            <RestaurantCard resData={el} />
+          </Link>
         ))}
       </div>
     </div>
