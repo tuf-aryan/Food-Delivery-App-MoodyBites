@@ -14,11 +14,11 @@ import appStore from "./Utils/appStore";
 import Cart from "./components/Cart";
 
 const AppLayout = () => {
-  const [userName,setUserName]= useState(null);
- useEffect(()=>{const data = {
-  name:"Aryan",
- }
-setUserName(data.name)},[])
+  const [userName,setUserName]= useState("Aryan");
+//  useEffect(()=>{const data = {
+//   name:"Aryan",
+//  }
+// setUserName(data.name)},[])
   return (
     <Provider store={appStore}>
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
@@ -40,10 +40,6 @@ const appRouter = createBrowserRouter([{
    path:"/",
    element:<Body/>,
   },
-{
-  path:"/about",
-  element:<About/>,
-},
 {
   path:"/contact",
   element:<Contact/>,

@@ -8,8 +8,7 @@ const Header = () => {
   const [btnName, setbtn] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const {loggedInUser} = useContext(UserContext);
-  const cartItems = useSelector((store)=>store.cart.items);
-  console.log(loggedInUser);
+  const cartItems = useSelector((store)=>store.cart.items); 
   return (
     <div className="flex justify-between border border-gray-400  shadow-lg  sticky top-0 z-50 bg-white">
       <div className="w-24">
@@ -18,20 +17,18 @@ const Header = () => {
       <div className="nav-items items-center">
         <ul className="flex p-8 justify-between ">
           <li className="mx-2">Online Status:{onlineStatus ? "🟢" : "🔴"}</li>
-          <li className="mx-4 ">
-            <Link to="/about">About Us</Link>
-          </li>
-          <li className="mx-4 font-medium text-lg flex">
+       
+          <li className="mx-4 flex">
             <Link to="/cart">Cart-({cartItems.length})</Link>
           </li>
           <li className="mx-4 ">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="mx-4">
+          <li className="mx-4 ">
             <Link to="/">Home</Link>
           </li>
           <button
-            className="login-btn mx-8 "
+            className="login-btn mx-8 w-16"
             onClick={() => {
               btnName === "Login" ? setbtn("Logout") : setbtn("Login");
             }}
